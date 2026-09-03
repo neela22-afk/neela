@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>For You ♡</title>
+
+
+    <style>
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            width: 100%;
+            height: 100vh;
+
+            overflow: hidden;
+
+            background: #000;
+
+            font-family: Georgia, serif;
+
+        }
+
+
+        /* =========================================
+           SCENE
+        ========================================= */
+
+        .scene {
+
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+
+        }
+
+
+        /* =========================================
+           BOUQUET
+        ========================================= */
+
+        .bouquet {
+
+            position: relative;
+
+            width: 760px;
+            height: 900px;
+
+        }
+
+
+        /* =========================================
+           REAL BOUQUET IMAGE
+        ========================================= */
+
+        .bouquet-image {
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            left: 0;
+            top: 0;
+
+            object-fit: contain;
+
+        }
+
+
+        /*
+           The complete bouquet stays hidden
+           until the individual flowers finish.
+        */
+
+        .final-bouquet {
+
+            opacity: 0;
+
+            transition:
+                opacity 1s ease;
+
+            z-index: 1;
+
+        }
+
+
+        .final-bouquet.show {
+
+            opacity: 1;
+
+        }
+
+
+        /* =========================================
+           INDIVIDUAL FLOWER REVEALS
+        ========================================= */
+
+        .flower {
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                url("bouquet.png");
+
+            background-size:
+                760px 900px;
+
+            background-repeat: no-repeat;
+
+            opacity: 0;
+
+            transform:
+                scale(.88);
+
+            filter:
+                brightness(.98);
+
+            transition:
+
+                opacity .25s ease,
+
+                transform .55s
+                cubic-bezier(
+                    .18,
+                    .89,
+                    .32,
+                    1.2
+                );
+
+            z-index: 5;
+
+        }
+
+
+        .flower.show {
+
+            opacity: 1;
+
+            transform:
+                scale(1);
+
+        }
+
+
+        /* =========================================
+           FLOWER 1
+           TOP SUNFLOWER
+        ========================================= */
+
+        .f1 {
+
+            clip-path:
+                ellipse(
+                    15% 12%
+                    at 48% 15%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 2
+           TOP BUD
+        ========================================= */
+
+        .f2 {
+
+            clip-path:
+                ellipse(
+                    8% 11%
+                    at 32% 10%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 3
+           TOP PINK TULIP
+        ========================================= */
+
+        .f3 {
+
+            clip-path:
+                ellipse(
+                    10% 10%
+                    at 57% 16%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 4
+           YELLOW TULIP
+        ========================================= */
+
+        .f4 {
+
+            clip-path:
+                ellipse(
+                    9% 12%
+                    at 69% 19%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 5
+           RIGHT PINK TULIP
+        ========================================= */
+
+        .f5 {
+
+            clip-path:
+                ellipse(
+                    10% 11%
+                    at 81% 22%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 6
+           LEFT SUNFLOWER
+        ========================================= */
+
+        .f6 {
+
+            clip-path:
+                ellipse(
+                    13% 12%
+                    at 28% 35%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 7
+           CENTER PINK LILY
+        ========================================= */
+
+        .f7 {
+
+            clip-path:
+                ellipse(
+                    15% 13%
+                    at 57% 27%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 8
+           CENTER WHITE LILY
+        ========================================= */
+
+        .f8 {
+
+            clip-path:
+                ellipse(
+                    16% 14%
+                    at 48% 43%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 9
+           LEFT PINK LILY
+        ========================================= */
+
+        .f9 {
+
+            clip-path:
+                ellipse(
+                    13% 13%
+                    at 18% 57%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 10
+           RIGHT WHITE LILY
+        ========================================= */
+
+        .f10 {
+
+            clip-path:
+                ellipse(
+                    13% 13%
+                    at 86% 41%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 11
+           UPPER RIGHT ROSE
+        ========================================= */
+
+        .f11 {
+
+            clip-path:
+                ellipse(
+                    10% 9%
+                    at 70% 34%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 12
+           CENTER WHITE ROSE
+        ========================================= */
+
+        .f12 {
+
+            clip-path:
+                ellipse(
+                    10% 9%
+                    at 51% 55%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 13
+           CENTER PINK ROSE
+        ========================================= */
+
+        .f13 {
+
+            clip-path:
+                ellipse(
+                    11% 10%
+                    at 39% 63%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 14
+           RIGHT SUNFLOWER
+        ========================================= */
+
+        .f14 {
+
+            clip-path:
+                ellipse(
+                    13% 12%
+                    at 75% 64%
+                );
+
+        }
+
+
+        /* =========================================
+           FLOWER 15
+           BOTTOM PINK LILY
+        ========================================= */
+
+        .f15 {
+
+            clip-path:
+                ellipse(
+                    17% 14%
+                    at 52% 76%
+                );
+
+        }
+
+
+        /* =========================================
+           WRAPPER / RIBBON
+        ========================================= */
+
+        .wrapper {
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                url("bouquet.png");
+
+            background-size:
+                760px 900px;
+
+            background-repeat: no-repeat;
+
+            opacity: 0;
+
+            z-index: 20;
+
+            transition:
+                opacity .8s ease;
+
+            clip-path:
+                polygon(
+                    0 72%,
+                    100% 72%,
+                    100% 100%,
+                    0 100%
+                );
+
+        }
+
+
+        .wrapper.show {
+
+            opacity: 1;
+
+        }
+
+
+        /* =========================================
+           SIDE BUTTON
+        ========================================= */
+
+        .message-button {
+
+            position: fixed;
+
+            right: 35px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            padding:
+                15px 23px;
+
+            border:
+                1px solid #e7a7b8;
+
+            border-radius:
+                30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c96d87,
+                    #f0b1c0
+                );
+
+            color: white;
+
+            font-family:
+                Georgia, serif;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            z-index: 100;
+
+            box-shadow:
+                0 8px 30px
+                rgba(
+                    235,
+                    140,
+                    170,
+                    .25
+                );
+
+            transition:
+                .3s ease;
+
+        }
+
+
+        .message-button:hover {
+
+            transform:
+                translateY(-50%)
+                scale(1.07);
+
+            box-shadow:
+                0 10px 40px
+                rgba(
+                    235,
+                    140,
+                    170,
+                    .45
+                );
+
+        }
+
+
+        /* =========================================
+           MESSAGE OVERLAY
+        ========================================= */
+
+        .message-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            background:
+                rgba(0,0,0,.84);
+
+            backdrop-filter:
+                blur(8px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            z-index: 500;
+
+            transition:
+                .4s ease;
+
+        }
+
+
+        .message-overlay.open {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+
+        /* =========================================
+           MESSAGE CARD
+        ========================================= */
+
+        .message-card {
+
+            position: relative;
+
+            width: 410px;
+
+            padding:
+                45px 38px;
+
+            text-align: center;
+
+            border-radius:
+                26px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff7f9,
+                    #f4d5de
+                );
+
+            box-shadow:
+                0 25px 100px
+                rgba(
+                    255,
+                    150,
+                    180,
+                    .3
+                );
+
+            transform:
+                scale(.7)
+                translateY(35px);
+
+            transition:
+                .55s
+                cubic-bezier(
+                    .2,
+                    .9,
+                    .3,
+                    1.2
+                );
+
+        }
+
+
+        .message-overlay.open
+        .message-card {
+
+            transform:
+                scale(1)
+                translateY(0);
+
+        }
+
+
+        /* =========================================
+           CLOSE
+        ========================================= */
+
+        .close-message {
+
+            position: absolute;
+
+            right: 15px;
+            top: 12px;
+
+            width: 35px;
+            height: 35px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0,0,0,.08);
+
+            color: #79505e;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================================
+           HEART
+        ========================================= */
+
+        .heart {
+
+            font-size: 60px;
+
+            color: #d56f89;
+
+            margin-bottom: 5px;
+
+            animation:
+                heartbeat
+                1.5s
+                infinite;
+
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform:
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    scale(1.12);
+            }
+
+        }
+
+
+        /* =========================================
+           MESSAGE TEXT
+        ========================================= */
+
+        .message-card h2 {
+
+            color:
+                #70404f;
+
+            font-size:
+                32px;
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .message-card p {
+
+            color:
+                #76515e;
+
+            font-size:
+                17px;
+
+            line-height:
+                1.65;
+
+            margin:
+                13px 0;
+
+        }
+
+
+        .signature {
+
+            color:
+                #c15f79 !important;
+
+            font-style:
+                italic;
+
+            margin-top:
+                25px !important;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media(max-width: 1000px) {
+
+            .bouquet {
+
+                transform:
+                    scale(.75);
+
+            }
+
+
+            .message-button {
+
+                right: 15px;
+
+                top: auto;
+
+                bottom: 25px;
+
+                transform: none;
+
+            }
+
+
+            .message-button:hover {
+
+                transform:
+                    scale(1.06);
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .bouquet {
+
+                transform:
+                    scale(.55);
+
+                margin-left:
+                    -50px;
+
+            }
+
+
+            .message-card {
+
+                width: 88%;
+
+                padding:
+                    40px 25px;
+
+            }
+
+
+            .message-button {
+
+                font-size:
+                    14px;
+
+                padding:
+                    12px 18px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="scene">
+
+
+        <div class="bouquet">
+
+
+            <!-- =====================================
+                 15 FLOWER ANIMATION LAYERS
+            ====================================== -->
+
+
+            <div class="flower f1"></div>
+
+            <div class="flower f2"></div>
+
+            <div class="flower f3"></div>
+
+            <div class="flower f4"></div>
+
+            <div class="flower f5"></div>
+
+            <div class="flower f6"></div>
+
+            <div class="flower f7"></div>
+
+            <div class="flower f8"></div>
+
+            <div class="flower f9"></div>
+
+            <div class="flower f10"></div>
+
+            <div class="flower f11"></div>
+
+            <div class="flower f12"></div>
+
+            <div class="flower f13"></div>
+
+            <div class="flower f14"></div>
+
+            <div class="flower f15"></div>
+
+
+            <!-- FINAL COMPLETE BOUQUET -->
+
+            <img
+                class="bouquet-image final-bouquet"
+                src="bouquet.png"
+                alt="Flower bouquet"
+            >
+
+
+            <!-- WRAPPER -->
+
+            <div class="wrapper"></div>
+
+
+        </div>
+
+
+        <!-- =========================================
+             MESSAGE BUTTON
+        ========================================== -->
+
+        <button
+            class="message-button"
+            id="messageButton"
+        >
+
+            💌 Open my message
+
+        </button>
+
+
+        <!-- =========================================
+             MESSAGE
+        ========================================== -->
+
+        <div
+            class="message-overlay"
+            id="messageOverlay"
+        >
+
+
+            <div class="message-card">
+
+
+                <button
+                    class="close-message"
+                    id="closeMessage"
+                >
+
+                    ×
+
+                </button>
+
+
+                <div class="heart">
+
+                    ♡
+
+                </div>
+
+
+                <h2>
+
+                    To You
+
+                </h2>
+
+
+                <p>
+                  Lu bouquet yesooo....
+                  I don’t really know what to write here, but I wanted to 
+                  say something. 😭
+                </p>
+                <p>
+                  We’ve talked about so many random and silly things, and 
+                  somehow even the most ordinary conversations with you end 
+                  up making me smile. Ani ani 
+
+                </p>
+               <p>
+                   As you are kinda pretty handsome,not labeling it.
+                   I just genuinely like getting to know you and the person 
+                   behind all these conversations. And maybe… just maybe, I 
+                   like you a little more than I’m willing to admit. ♡
+                </p>
+
+
+                <p class="signature">
+
+                    From me
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =========================================
+           FLOWERS
+        ========================================= */
+
+
+        const flowers =
+            document.querySelectorAll(
+                ".flower"
+            );
+
+
+        /*
+           15 flowers
+
+           0.0
+           0.4
+           0.8
+           1.2
+           ...
+           5.6 seconds
+        */
+
+
+        flowers.forEach(
+            (flower, index) => {
+
+                setTimeout(
+                    () => {
+
+                        flower.classList.add(
+                            "show"
+                        );
+
+                    },
+
+                    index * 400
+
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           SHOW COMPLETE BOUQUET
+        ========================================= */
+
+
+        setTimeout(
+            () => {
+
+                document
+                    .querySelector(
+                        ".final-bouquet"
+                    )
+                    .classList.add(
+                        "show"
+                    );
+
+            },
+
+            6000
+
+        );
+
+
+
+        /* =========================================
+           WRAPPER
+        ========================================= */
+
+
+        setTimeout(
+            () => {
+
+                document
+                    .querySelector(
+                        ".wrapper"
+                    )
+                    .classList.add(
+                        "show"
+                    );
+
+            },
+
+            6200
+
+        );
+
+
+
+        /* =========================================
+           MESSAGE
+        ========================================= */
+
+
+        const messageButton =
+            document.getElementById(
+                "messageButton"
+            );
+
+
+        const messageOverlay =
+            document.getElementById(
+                "messageOverlay"
+            );
+
+
+        const closeMessage =
+            document.getElementById(
+                "closeMessage"
+            );
+
+
+        messageButton.addEventListener(
+            "click",
+            () => {
+
+                messageOverlay.classList.add(
+                    "open"
+                );
+
+            }
+        );
+
+
+        closeMessage.addEventListener(
+            "click",
+            () => {
+
+                messageOverlay.classList.remove(
+                    "open"
+                );
+
+            }
+        );
+
+
+        messageOverlay.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target ===
+                    messageOverlay
+                ) {
+
+                    messageOverlay.classList.remove(
+                        "open"
+                    );
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
